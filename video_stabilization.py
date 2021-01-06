@@ -57,9 +57,9 @@ def main():
 
         m, il = cv2.estimateAffinePartial2D(prev_pts, curr_pts)
 
-        dx = m[0, 2]
-        dy = m[1, 2]
-        da = np.arctan2(m[1, 0], m[0, 0])
+        dx = m[0][2]
+        dy = m[1][2]
+        da = np.arctan2(m[1][0], m[0][0])
         transforms[i] = [dx, dy, da]
 
         prev_gray = curr_gray
@@ -81,12 +81,12 @@ def main():
         da = transforms_smooth[i, 2]
 
         m = np.zeros((2, 3), np.float32)
-        m[0, 0] = np.cos(da)
-        m[0, 1] = -np.sin(da)
-        m[1, 0] = np.sin(da)
-        m[1, 1] = np.cos(da)
-        m[0, 2] = dx
-        m[1, 2] = dy
+        m[0][0] = np.cos(da)
+        m[0][1] = -np.sin(da)
+        m[1][0] = np.sin(da)
+        m[1][1] = np.cos(da)
+        m[0][2] = dx
+        m[1][2] = dy
 
         frame_stabilized = cv2.warpAffine(frame, m, (width, height))
         frame_stabilized = fix_border(frame_stabilized)
