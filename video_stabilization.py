@@ -76,9 +76,9 @@ def main():
         if not success:
             break
 
-        dx = transforms_smooth[i, 0]
-        dy = transforms_smooth[i, 1]
-        da = transforms_smooth[i, 2]
+        dx = transforms_smooth[i][0]
+        dy = transforms_smooth[i][1]
+        da = transforms_smooth[i][2]
 
         m = np.zeros((2, 3), np.float32)
         m[0][0] = np.cos(da)
